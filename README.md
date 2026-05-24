@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ResearchIndia
 
-## Getting Started
+**Building a new India, one data point at a time.**
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Refined Foundational Philosophy
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ResearchIndia is an independent think tank dedicated to uncovering the realities shaping India through data, systems analysis, and public research.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We believe that meaningful national progress begins with clarity — understanding how our infrastructure, economy, environment, institutions, and civic systems truly function beyond headlines and political narratives.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+But our mission extends beyond publishing reports.
 
-## Learn More
+We aim to contribute to the rebuilding of India’s intellectual and civilizational strength — in science, technology, governance, culture, environmental responsibility, and collective social thinking.
 
-To learn more about Next.js, take a look at the following resources:
+India once stood for deep inquiry, scientific curiosity, philosophical depth, and long-term societal vision. We believe those foundations still matter.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Through open research, public data tools, district-level transparency, and evidence-driven analysis, ResearchIndia works toward a future where development is intelligent, accountable, sustainable, and rooted in responsibility to both people and nature.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+We do not believe growth must come through destruction.  
+We believe progress and preservation can coexist.
 
-## Deploy on Vercel
+Our work is built on one principle:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> **A stronger nation is built when citizens can clearly see the systems that shape their lives.**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Aims
+
+ResearchIndia pursues a long-horizon vision: a **data-literate India from 2026 to 2050** — research growth, civic clarity, and national advancement.
+
+### What we work toward
+
+- **Transparency at district scale** — machine-readable public data citizens can trace
+- **Research acceleration** — independent analysis that enters classrooms, newsrooms, and policy debate
+- **Evidence in government** — legislation and programs with published assumptions and open scrutiny
+- **Live accountability** — comparable indices across districts for safety, health, and infrastructure
+- **Regional knowledge leadership** — open standards shared across South Asia
+- **A data-sovereign democracy by 2050** — where every citizen can read the budget that shapes their life
+
+### How we pursue it
+
+| Aim | Description |
+|-----|-------------|
+| **Uncover what is buried** | Surface datasets, filings, and indicators that never make the headline—but shape outcomes for millions |
+| **Publish with rigor** | Source every claim, state every method, write for decision-makers who need clarity, not spin |
+| **Scale through tools** | Offer interactive indices and open instruments so anyone can verify and extend our work |
+
+We stand alongside India’s established research institutions—ORF, CPR, ICRIER, Gateway House, CSDS—while focusing on **subnational transparency** and **citizen-scale data**.
+
+---
+
+## Content topics
+
+Our research is organised around four core areas. Each topic connects to open data, published analysis, and—where relevant—interactive tools.
+
+### Technology
+
+Digital public infrastructure, AI governance, connectivity gaps, and how technology reshapes access to state services at district scale.
+
+### Infrastructure
+
+Roads, power, transit, and the built environment—budget lines, delivery delays, and equity across rural and urban districts.
+
+### Water · Trees · Air
+
+Groundwater, forest cover, air quality, and climate stressors tracked against policy commitments and on-the-ground outcomes.
+
+### Indexes
+
+Composite measures built for verification and extension—household income, fiscal burden, public safety, and policy history. This lane links directly to our open instruments below.
+
+---
+
+## Tools
+
+Public, interactive instruments for hands-on analysis. Each tool states its assumptions and invites replication.
+
+| Tool | Path | Purpose |
+|------|------|---------|
+| **Household Income Index** | `/tools/ghi` | Poverty benchmarks and household economics—run scenarios from income and household size |
+| **Tax Policy Estimator** | `/tools/tax` | Estimate tax burden under filing status, income, and deductions |
+| **Public Safety Data** | `/tools/crime` | Explore crime-rate data by city and state; read what official series show beneath headlines |
+| **Policy History Lab** | `/tools/history` | Guided lessons through policy evolution and the data trail behind major shifts |
+
+Tools are accessible from the site navigation under **Tools**, and from the **Indexes** topic on the home page.
+
+---
+
+## Pages
+
+The ResearchIndia site brings philosophy, research, and instruments together in one place.
+
+| Page | Path | What you’ll find |
+|------|------|------------------|
+| **Home** | `/` | Hero, core research topics, and the 2026–2050 vision timeline |
+| **Publications** | `/publications` | Issue briefs, research papers, special reports, and working papers |
+| **LookPublic** | `/lookpublic` | District-level civic data via our partner [ForThePeople.in](https://forthepeople.in/en)—budgets, schemes, crop prices, water levels, and more |
+| **Blog** | `/blog` | Research notes and essays on transparency, methodology, and India’s research landscape |
+| **Contact** | `/contact` | Inquiries, collaborations, corrections, and early access requests |
+| **Household Income Index** | `/tools/ghi` | Open income and poverty analysis |
+| **Tax Policy Estimator** | `/tools/tax` | Fiscal burden calculator |
+| **Public Safety Data** | `/tools/crime` | Crime-rate explorer |
+| **Policy History Lab** | `/tools/history` | Interactive policy history lessons |
+
+### Home sections
+
+On the landing page, anchored sections include:
+
+- **Core topics** — Technology, Infrastructure, Water · Trees · Air, Indexes
+- **Vision** — Milestones from 2026 to 2050 and our three operational pillars
+
+### Publications (current catalogue)
+
+- *The District Fiscal Transparency Gap in India* — Issue Brief
+- *Household Income and Poverty Benchmarks: A Method Note* — Research Paper
+- *Public Safety Trends: Reading the Data Beneath Headlines* — Special Report
+- *Open Data and District Governance in India* — Working Paper
+
+### LookPublic · data partner
+
+**ForThePeople.in** is an independent citizen transparency platform—not a government service. Through LookPublic, researchers access district-level budgets, schemes, and verified public sources built for ground-truth analysis.
+
+---
+
+*ResearchIndia · Independent think tank · Open research for a data-literate India*
