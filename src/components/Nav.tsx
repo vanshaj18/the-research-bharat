@@ -23,27 +23,10 @@ const PAGE_LINKS = [
 ] as const;
 
 const NAV_LINK_CLASS =
-  "text-base font-medium transition-colors md:text-[1.0625rem]";
+  "font-display text-base font-medium transition-colors md:text-[1.0625rem]";
 
 function homeHref(hash: string, onHome: boolean) {
   return onHome ? hash : `/${hash}`;
-}
-
-function NavLabStatus({ className = "" }: { className?: string }) {
-  return (
-    <div className={`lab-status shrink-0 ${className}`.trim()}>
-      <span className="lab-pulse" aria-hidden />
-      <span className="lab-meta text-foreground/90">ResearchIndia Lab</span>
-      <span className="lab-meta text-muted" aria-hidden>
-        |
-      </span>
-      <span className="lab-meta text-accent">Field stream active</span>
-      <span className="lab-meta text-muted" aria-hidden>
-        |
-      </span>
-      <span className="lab-meta">IND · v1.0</span>
-    </div>
-  );
 }
 
 function NavAnchor({
@@ -107,16 +90,16 @@ export default function Nav() {
           ResearchIndia
         </Link>
 
-        <NavLabStatus className="order-3 hidden w-full justify-center md:order-none md:flex md:w-auto lg:mx-4" />
+        {/* <NavLabStatus className="order-3 hidden w-full justify-center md:order-none md:flex md:w-auto lg:mx-4" /> */}
 
-        <button
+        {/* <button
           type="button"
           aria-label="Toggle menu"
           className="lab-btn lab-btn-secondary px-3 py-2 text-lg normal-case tracking-normal md:order-none md:hidden"
           onClick={() => setMobileOpen((o) => !o)}
         >
           {mobileOpen ? "✕" : "☰"}
-        </button>
+        </button> */}
 
         <ul
           className={`${
@@ -125,11 +108,11 @@ export default function Nav() {
               : "hidden"
           } md:static md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0`}
         >
-          {mobileOpen && (
+          {/* {mobileOpen && (
             <li className="md:hidden">
               <NavLabStatus className="w-full justify-center" />
             </li>
-          )}
+          )} */}
 
           {HOME_LINKS.map((link) => (
             <li key={link.hash}>
@@ -183,7 +166,7 @@ export default function Nav() {
                         setToolsOpen(false);
                         closeMobile();
                       }}
-                      className={`block rounded-md px-3 py-2.5 text-base font-medium transition ${
+                      className={`font-display block rounded-md px-3 py-2.5 text-base font-medium transition ${
                         pathname === tool.href
                           ? "bg-white/5 text-accent"
                           : "text-foreground/90 hover:bg-white/5 hover:text-accent"
