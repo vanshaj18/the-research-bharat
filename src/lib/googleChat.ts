@@ -5,10 +5,11 @@ export type ContactPayload = {
   email: string;
   purpose: ContactPurpose;
   message: string;
+  dataDownloadLink?: string;
 };
 
 export function formatContactMessage(payload: ContactPayload): string {
-  return [
+  const lines = [
     "*New ResearchIndia inquiry*",
     "",
     `*Name:* ${payload.name}`,
@@ -17,7 +18,13 @@ export function formatContactMessage(payload: ContactPayload): string {
     "",
     "*Message:*",
     payload.message,
-  ].join("\n");
+  ];
+
+  if (payload.dataDownloadLink) {
+    lines.push("", `*Data download link:* ${payload.dataDownloadLink}`);
+  }
+
+  return lines.join("\n");
 }
 
 export async function sendToGoogleChat(

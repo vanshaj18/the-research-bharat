@@ -10,7 +10,7 @@ export const SCROLL_DURATION = 1.15;
 
 function getNavOffset(): number {
   const raw = getComputedStyle(document.documentElement)
-    .getPropertyValue("--nav-height")
+    .getPropertyValue("--header-height")
     .trim();
   const parsed = Number.parseFloat(raw);
   return Number.isFinite(parsed) ? parsed : 92;

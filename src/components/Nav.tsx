@@ -3,6 +3,7 @@
 import PageShell from "@/components/PageShell";
 import {
   CONTACT_ROUTE,
+  CONTRIBUTE_ROUTE,
   LOOKPUBLIC_ROUTE,
   PUBLICATIONS_ROUTE,
   TOOL_LINKS,
@@ -19,6 +20,7 @@ const HOME_LINKS = [
 const PAGE_LINKS = [
   { label: "Publication", href: PUBLICATIONS_ROUTE },
   { label: "LookPublic", href: LOOKPUBLIC_ROUTE },
+  { label: "Contribute", href: CONTRIBUTE_ROUTE },
   { label: "Contact", href: CONTACT_ROUTE },
 ] as const;
 
@@ -60,7 +62,17 @@ export default function Nav() {
   const onHome = pathname === "/";
   const [toolsOpen, setToolsOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 0);
+    }
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -78,7 +90,9 @@ export default function Nav() {
   const closeMobile = () => setMobileOpen(false);
 
   return (
-    <header className="nav-transparent fixed inset-x-0 top-0 z-50 w-full">
+    <header
+      className={`nav-transparent w-full${scrolled ? " scrolled" : ""}`}
+    >
       <PageShell
         as="nav"
         className="flex min-h-[var(--nav-height)] flex-wrap items-center justify-between gap-x-4 gap-y-3 py-3"
@@ -106,7 +120,7 @@ export default function Nav() {
             mobileOpen
               ? "glass-panel absolute inset-x-0 top-full flex flex-col gap-4 border-b py-6 [padding-inline:var(--pad-x)]"
               : "hidden"
-          } md:static md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0`}
+          } md:static md:flex md:flex-row md:items-center md:gap-8 md:overflow-visible md:border-0 md:bg-transparent md:p-0`}
         >
           {/* {mobileOpen && (
             <li className="md:hidden">
@@ -141,7 +155,7 @@ export default function Nav() {
             </li>
           ))}
 
-          <li className="relative" ref={dropdownRef}>
+          <li className="relative md:overflow-visible" ref={dropdownRef}>
             <button
               type="button"
               aria-expanded={toolsOpen}
@@ -157,7 +171,7 @@ export default function Nav() {
               </span>
             </button>
             {toolsOpen && (
-              <ul className="glass-panel mt-2 flex flex-col gap-1 rounded-lg p-2 md:absolute md:left-0 md:mt-2 md:min-w-[240px]">
+              <ul className="glass-panel z-50 mt-2 flex flex-col gap-1 rounded-lg p-2 md:absolute md:right-0 md:left-auto md:mt-2 md:min-w-[240px] md:max-w-[min(16rem,calc(100vw-2*var(--pad-x)))]">
                 {TOOL_LINKS.map((tool) => (
                   <li key={tool.href}>
                     <Link

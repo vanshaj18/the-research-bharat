@@ -1,4 +1,10 @@
 import PageShell from "@/components/PageShell";
+import {
+  CONTACT_ROUTE,
+  CONTRIBUTE_ROUTE,
+  LOOKPUBLIC_ROUTE,
+  PUBLICATIONS_ROUTE,
+} from "@/lib/routes";
 import Link from "next/link";
 
 const WATERFALL_COLUMNS = 16;
@@ -30,33 +36,62 @@ function WaterfallColumn({ offset }: { offset: number }) {
   );
 }
 
+const FOOTER_LINKS = [
+  { label: "Publications", href: PUBLICATIONS_ROUTE },
+  { label: "LookPublic", href: LOOKPUBLIC_ROUTE },
+  { label: "Contribute", href: CONTRIBUTE_ROUTE },
+  { label: "Contact", href: CONTACT_ROUTE },
+] as const;
+
 export default function SiteFooter() {
   return (
-    <footer className="waterfall-footer relative z-[1] w-full" data-scroll-footer>
-      <div className="waterfall-glow" aria-hidden />
-      <div className="waterfall-backdrop" aria-hidden>
-        {Array.from({ length: WATERFALL_COLUMNS }, (_, i) => (
-          <WaterfallColumn key={i} offset={i} />
-        ))}
+    <footer className="site-footer relative z-[1] w-full">
+      <div className="waterfall-footer" data-scroll-footer>
+        <div className="waterfall-glow" aria-hidden />
+        <div className="waterfall-backdrop" aria-hidden>
+          {Array.from({ length: WATERFALL_COLUMNS }, (_, i) => (
+            <WaterfallColumn key={i} offset={i} />
+          ))}
+        </div>
+
+        <div className="waterfall-hero">
+          <p className="waterfall-name font-display">Research India</p>
+        </div>
       </div>
 
-      <div className="waterfall-hero">
-        <p className="waterfall-name font-display">Research India</p>
-      </div>
-
-      <PageShell as="footer" className="waterfall-meta relative z-10 py-6 text-center">
-        <p className="text-sm text-muted">
-          © {new Date().getFullYear()} ResearchIndia — Independent research.
-          Building India one data point at a time.
-          <Link
-            href="/blog"
-            className="ml-1 text-[10px] opacity-20 transition-opacity hover:opacity-50"
-            aria-label="Insights"
+      <div className="site-footer-static">
+        <PageShell className="py-6 text-center">
+          <p className="footer-disclaimer text-xs tracking-wide text-muted">
+            <span aria-hidden>⚠️</span> Independent · NOT an official government
+            website · NDSAP · Article 19(1)(a)
+          </p>
+          <nav
+            aria-label="Footer"
+            className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
           >
-            ·
-          </Link>
-        </p>
-      </PageShell>
+            {FOOTER_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-foreground/85 transition-colors hover:text-accent"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <p className="mt-4 text-sm text-muted">
+            © {new Date().getFullYear()} ResearchIndia — Independent research.
+            Building India one data point at a time.
+            <Link
+              href="/blog"
+              className="ml-1 text-[10px] opacity-20 transition-opacity hover:opacity-50"
+              aria-label="Insights"
+            >
+              ·
+            </Link>
+          </p>
+        </PageShell>
+      </div>
     </footer>
   );
 }

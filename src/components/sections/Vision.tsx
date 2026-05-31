@@ -17,11 +17,12 @@ const PILLARS = [
 ];
 
 const PEER_ORGS = [
-  "Observer Research Foundation (ORF)",
-  "Centre for Policy Research (CPR)",
-  "Indian Council for Research on International Economic Relations (ICRIER)",
-  "Gateway House",
-  "Centre for the Study of Developing Societies (CSDS)",
+  "Data Driven Change",
+  "Policy Research",
+  "National Discussion with data",
+  "Problem Identification",
+  "Research output",
+  "Government based data grounding",
 ];
 
 export default function Vision() {
@@ -66,8 +67,14 @@ export default function Vision() {
       >
         <p className="lab-meta text-accent">Archive · peer network</p>
         <p className="font-label mt-2 text-accent">Research ecosystem</p>
-        <p className="mt-3 max-w-[min(100%,52rem)] leading-relaxed text-muted">
-          ResearchIndia stands alongside established institutions documented by
+        <p className="mt-3 max-w-[min(100%,100rem)] leading-relaxed text-muted">
+          ResearchIndia is an independent think tank dedicated to uncovering the realities shaping India through data, systems analysis, and public research. 
+          We believe that meaningful national progress begins with clarity — understanding how our infrastructure, economy, environment, institutions, and civic systems truly function beyond headlines and political narratives.
+          
+          Our aim is clear; we want to bring forth the discussion about national growth grounded in data, rigorously analyse initiative, policies and related details that 
+          affects every bhartiya citizen. We also aim to provide data driven solutions, policy changes and initiatives that can exists within the current
+          ecosystem, without much change. 
+          {/* alongside established institutions documented by
           the{" "}
           <a
             href="https://www.icwa.in/show_content.php?lang=1&level=1&ls_id=1586&lid=1555"
@@ -78,7 +85,7 @@ export default function Vision() {
             Indian Council of World Affairs
           </a>
           —including ORF, CPR, ICRIER, and Gateway House—while focusing on
-          subnational transparency and citizen-scale datasets.
+          subnational transparency and citizen-scale datasets. */}
         </p>
         <ul className="mt-4 flex flex-wrap gap-2">
           {PEER_ORGS.map((org) => (

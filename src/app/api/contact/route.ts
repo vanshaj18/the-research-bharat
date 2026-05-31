@@ -1,59 +1,6 @@
-import { isContactPurpose } from "@/lib/contact";
-import {
-  type ContactPayload,
-  formatContactMessage,
-  sendToGoogleChat,
-} from "@/lib/googleChat";
+import { formatContactMessage, sendToGoogleChat } from "@/lib/googleChat";
+import { parseContactBody } from "@/lib/parseContactForm";
 import { NextResponse } from "next/server";
-
-const MAX_NAME = 120;
-const MAX_EMAIL = 254;
-const MAX_MESSAGE = 4000;
-
-function parseContactBody(
-  body: unknown,
-): ContactPayload | null {
-  if (!body || typeof body !== "object") return null;
-
-  const { name, email, purpose, message } = body as Record<string, unknown>;
-  if (
-    typeof name !== "string" ||
-    typeof email !== "string" ||
-    typeof purpose !== "string" ||
-    typeof message !== "string"
-  ) {
-    return null;
-  }
-
-  const payload = {
-    name: name.trim(),
-    email: email.trim(),
-    purpose: purpose.trim(),
-    message: message.trim(),
-  };
-
-  if (!payload.name || !payload.email || !payload.purpose || !payload.message) {
-    return null;
-  }
-
-  if (!isContactPurpose(payload.purpose)) return null;
-  if (
-    payload.name.length > MAX_NAME ||
-    payload.email.length > MAX_EMAIL ||
-    payload.message.length > MAX_MESSAGE
-  ) {
-    return null;
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) return null;
-
-  return {
-    name: payload.name,
-    email: payload.email,
-    purpose: payload.purpose,
-    message: payload.message,
-  };
-}
 
 export async function POST(request: Request) {
   const webhookUrl = process.env.GOOGLE_CHAT_WEBHOOK_URL;
@@ -73,11 +20,8 @@ export async function POST(request: Request) {
   }
 
   const payload = parseContactBody(body);
-  if (!payload) {
-    return NextResponse.json(
-      { error: "Invalid name, email, purpose, or message." },
-      { status: 400 },
-    );
+  if (typeof payload === "string") {
+    return NextResponse.json({ error: payload }, { status: 400 });
   }
 
   try {

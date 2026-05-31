@@ -4,6 +4,7 @@ export type Publication = {
   type: "Issue Brief" | "Research Paper" | "Special Report" | "Working Paper";
   date: string;
   excerpt: string;
+  tags?: string[];
   authors?: string;
 };
 
@@ -14,6 +15,7 @@ export const PUBLICATIONS: Publication[] = [
     type: "Issue Brief",
     date: "2026-04-12",
     authors: "ResearchIndia Research Desk",
+    tags: ["Fiscal Transparency", "District Data", "Budget Analysis"],
     excerpt:
       "Subnational budget data remains fragmented. We map what is published, what is missing, and what citizens cannot see.",
   },
@@ -23,6 +25,7 @@ export const PUBLICATIONS: Publication[] = [
     type: "Research Paper",
     date: "2026-03-28",
     authors: "Fiscal Policy Unit",
+    tags: ["Household Income", "Poverty", "Income Index"],
     excerpt:
       "Methodology behind our Household Income Index—assumptions, data sources, and limitations for policy use.",
   },
@@ -32,6 +35,7 @@ export const PUBLICATIONS: Publication[] = [
     type: "Special Report",
     date: "2026-02-15",
     authors: "Civic Data Lab",
+    tags: ["Crime", "Safety", "Crime Index"],
     excerpt:
       "How violent crime indices are constructed, where official series diverge, and what researchers should verify first.",
   },
@@ -41,6 +45,7 @@ export const PUBLICATIONS: Publication[] = [
     type: "Working Paper",
     date: "2026-01-08",
     authors: "ResearchIndia Research Desk",
+    tags: ["Open Data", "District Governance", "Data Linkage"],
     excerpt:
       "A framework for linking citizen platforms, government portals, and think-tank analysis at the district level.",
   },

@@ -1,3 +1,4 @@
+import { getSiteUrl } from "@/lib/site";
 import type { Metadata } from "next";
 import { Cinzel, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
@@ -21,10 +22,27 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
+  metadataBase: siteUrl,
   title: "ResearchIndia | Data-Driven Policy Insights for India",
   description:
     "Publishing real insights from data that have been hidden. Building a new India, one data point at a time.",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    siteName: "ResearchIndia",
+    title: "ResearchIndia | Data-Driven Policy Insights for India",
+    description:
+      "Publishing real insights from data that have been hidden. Building a new India, one data point at a time.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ResearchIndia | Data-Driven Policy Insights for India",
+    description:
+      "Publishing real insights from data that have been hidden. Building a new India, one data point at a time.",
+  },
 };
 
 export default function RootLayout({

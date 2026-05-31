@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative -mt-[var(--nav-height)] flex min-h-[100svh] w-full items-end overflow-hidden"
+      className="relative -mt-[var(--header-height)] flex min-h-[100svh] w-full items-end overflow-hidden"
     >
       <div className="pointer-events-none absolute inset-0" data-scroll-hero-bg>
         <Image
@@ -24,7 +24,7 @@ export default function Hero() {
         />
       </div>
 
-      <PageShell className="relative z-[1] w-full pb-10 pt-[var(--nav-height)] md:pb-14">
+      <PageShell className="relative z-[1] w-full pb-10 pt-[var(--header-height)] md:pb-14">
         <div className="flex flex-wrap gap-3" data-scroll-hero-item>
           <a href="#topics" className="lab-btn lab-btn-primary">
             Core topics

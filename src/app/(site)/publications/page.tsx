@@ -59,6 +59,17 @@ export default function PublicationsPage() {
                 <p className="mt-3 max-w-[min(100%,52rem)] leading-relaxed text-muted">
                   {pub.excerpt}
                 </p>
+                {pub.tags && pub.tags.length > 0 && (
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {pub.tags.map((tag) => (
+                      <li key={tag}>
+                        <span className="glass-chip inline-flex px-3 py-1.5 text-xs font-medium text-accent">
+                          {tag}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <button
                   type="button"
                   className="mt-4 text-sm font-semibold text-accent transition-colors hover:text-accent"

@@ -42,9 +42,24 @@ export default function CoreTopics() {
               >
                 {topic.title}
               </h3>
-              <p className="mt-3 flex-1 leading-relaxed text-muted">
-                {topic.description}
-              </p>
+              <ul className="mt-3 flex flex-1 flex-wrap gap-2">
+                {topic.tags.map((tag) => (
+                  <li key={tag}>
+                    <span
+                      className="glass-chip inline-flex px-3 py-1.5 text-xs font-medium"
+                      style={
+                        {
+                          "--topic-accent": topic.accent,
+                          color: topic.accent,
+                          borderColor: `color-mix(in srgb, ${topic.accent} 40%, transparent)`,
+                        } as React.CSSProperties
+                      }
+                    >
+                      {tag}
+                    </span>
+                  </li>
+                ))}
+              </ul>
               {"links" in topic && topic.links && (
                 <ul className="mt-5 flex flex-wrap gap-2 border-t border-white/15 pt-5">
                   {topic.links.map((link) => (

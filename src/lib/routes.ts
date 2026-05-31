@@ -1,6 +1,7 @@
 export const PUBLICATIONS_ROUTE = "/publications";
 export const LOOKPUBLIC_ROUTE = "/lookpublic";
 export const CONTACT_ROUTE = "/contact";
+export const CONTRIBUTE_ROUTE = "/contribute";
 
 export const TOOL_ROUTES = {
   ghi: "/tools/ghi",

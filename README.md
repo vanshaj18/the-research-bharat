@@ -126,3 +126,17 @@ On the landing page, anchored sections include:
 ---
 
 *ResearchIndia · Independent think tank · Open research for a data-literate India*
+
+---
+
+## Development
+
+```bash
+npm install
+cp env.example .env.local   # add GOOGLE_CHAT_WEBHOOK_URL; optional NEXT_PUBLIC_SITE_URL
+npm run dev
+```
+
+## Hosting (not deployed yet)
+
+The app is **hosting-ready** (production build, env template, security headers, sitemap/robots). See **[DEPLOYMENT.md](./DEPLOYMENT.md)** for the go-live checklist when you are ready to deploy.

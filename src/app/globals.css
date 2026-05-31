@@ -10,7 +10,7 @@
   --foreground: #f8fafc;
 
   /* Metallic + glass */
-  --metallic-base: #0a0a0b;
+  --metallic-base: #1f1f20c7;
   --metallic-mid: #121418;
   --metallic-highlight: #1c1f26;
   --glass-bg: rgb(255 255 255 / 0.08);
@@ -28,6 +28,8 @@
   --muted: #b4bcc8;
   --border: var(--glass-border-subtle);
   --nav-height: 5.75rem;
+  --disclaimer-height: 3.5rem;
+  --header-height: calc(var(--disclaimer-height) + var(--nav-height));
   --pad-x: clamp(1rem, 4vw + 0.25rem, 6rem);
   --pad-y-section: clamp(3.5rem, 7vw, 6.5rem);
   --pad-y-hero: clamp(2rem, 5vw, 7rem);
@@ -53,7 +55,7 @@
 html {
   color-scheme: dark;
   scroll-behavior: auto;
-  scroll-padding-top: var(--nav-height);
+  scroll-padding-top: var(--header-height);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -174,12 +176,31 @@ body {
   box-shadow: var(--glass-inset), 0 4px 24px rgb(0 0 0 / 0.45);
 }
 
+.disclaimer-banner {
+  background: rgb(255 193 7 / 0.1);
+  border-bottom: 1px solid rgb(255 193 7 / 0.22);
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --disclaimer-height: 2.25rem;
+  }
+}
+
 .nav-transparent {
-  background: transparent;
+  background: transparent ;
   border-bottom: 1px solid transparent;
   box-shadow: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+}
+.nav-transparent.scrolled {
+  background: var(--metallic-base);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--glass-inset), var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
 }
 
 .glass-input {
@@ -628,7 +649,7 @@ body {
 }
 
 .section-anchor {
-  scroll-margin-top: var(--nav-height);
+  scroll-margin-top: var(--header-height);
 }
 
 /* Vision timeline — restrained blue → green */
@@ -745,15 +766,19 @@ body {
 
 /* Waterfall footer — Research India */
 .waterfall-footer {
+  --waterfall-saffron: #ff671f;
+  --waterfall-white: #ffffff;
+  --waterfall-green: #046a38;
   position: relative;
   overflow: hidden;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgb(10 10 11 / 0.85) 25%,
-    rgb(8 8 9 / 0.95) 100%
+    rgb(4 106 56 / 0.06) 30%,
+    rgb(10 10 11 / 0.88) 55%,
+    rgb(255 103 31 / 0.05) 100%
   );
-  border-top: 1px solid var(--glass-border-subtle);
+  border-top: 1px solid rgb(255 255 255 / 0.1);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   min-height: clamp(16rem, 32vh, 26rem);
@@ -762,11 +787,22 @@ body {
 .waterfall-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 80% 60% at 50% 100%,
-    rgb(59 130 246 / 0.06) 0%,
-    transparent 65%
-  );
+  background:
+    radial-gradient(
+      ellipse 45% 55% at 18% 100%,
+      rgb(255 103 31 / 0.1) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 35% 45% at 50% 100%,
+      rgb(255 255 255 / 0.05) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 45% 55% at 82% 100%,
+      rgb(4 106 56 / 0.1) 0%,
+      transparent 62%
+    );
   pointer-events: none;
 }
 
@@ -809,17 +845,18 @@ body {
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0.08em;
-  color: var(--accent);
-  opacity: 0.14;
+  color: var(--waterfall-saffron);
+  opacity: 0.2;
   user-select: none;
 }
 
-.waterfall-column:nth-child(odd) .waterfall-char {
-  color: var(--green);
-  opacity: 0.1;
+.waterfall-column:nth-child(3n + 2) .waterfall-char {
+  color: var(--waterfall-white);
+  opacity: 0.12;
 }
 
 .waterfall-column:nth-child(3n) .waterfall-char {
+  color: var(--waterfall-green);
   opacity: 0.22;
 }
 
@@ -847,21 +884,28 @@ body {
   font-size: clamp(3rem, 16vw, 9rem);
   line-height: 0.92;
   letter-spacing: -0.02em;
-  color: var(--foreground);
-  text-shadow:
-    0 1px 0 rgb(255 255 255 / 0.12),
-    0 2px 24px rgb(75 143 255 / 0.2);
+  background: linear-gradient(
+    90deg,
+    var(--waterfall-saffron) 0%,
+    var(--waterfall-white) 50%,
+    var(--waterfall-green) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 2px 24px rgb(255 103 31 / 0.2))
+    drop-shadow(0 2px 32px rgb(4 106 56 / 0.15));
 }
 
-.waterfall-meta {
-  position: relative;
-  z-index: 3;
-  background: linear-gradient(
-    to top,
-    rgb(10 10 11 / 0.9) 55%,
-    rgb(10 10 11 / 0.5) 80%,
-    transparent
-  );
+.site-footer-static {
+  background: var(--metallic-base);
+  border-top: 1px solid var(--glass-border-subtle);
+}
+
+.footer-disclaimer {
+  color: rgb(248 250 252 / 0.72);
+  letter-spacing: 0.02em;
 }
 
 @media (prefers-reduced-motion: reduce) {

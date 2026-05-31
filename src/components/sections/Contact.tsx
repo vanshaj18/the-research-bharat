@@ -1,7 +1,12 @@
 "use client";
 
 import Section from "@/components/Section";
-import { CONTACT_PURPOSES } from "@/lib/contact";
+import {
+  CONTACT_PURPOSES,
+  DATA_CONTRIBUTION_PURPOSE,
+  validateDataDownloadLink,
+  type ContactPurpose,
+} from "@/lib/contact";
 import { FormEvent, useState } from "react";
 
 type SubmitStatus = "idle" | "submitting" | "sent" | "error";
@@ -9,11 +14,23 @@ type SubmitStatus = "idle" | "submitting" | "sent" | "error";
 export default function Contact() {
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [purpose, setPurpose] = useState<ContactPurpose | "">("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    const selectedPurpose = String(data.get("purpose") ?? "");
+    const dataDownloadLink = String(data.get("dataDownloadLink") ?? "");
+
+    if (selectedPurpose === DATA_CONTRIBUTION_PURPOSE) {
+      const linkError = validateDataDownloadLink(dataDownloadLink);
+      if (linkError) {
+        setStatus("error");
+        setErrorMessage(linkError);
+        return;
+      }
+    }
 
     setStatus("submitting");
     setErrorMessage("");
@@ -25,8 +42,11 @@ export default function Contact() {
         body: JSON.stringify({
           name: data.get("name"),
           email: data.get("email"),
-          purpose: data.get("purpose"),
+          purpose: selectedPurpose,
           message: data.get("message"),
+          ...(selectedPurpose === DATA_CONTRIBUTION_PURPOSE
+            ? { dataDownloadLink }
+            : {}),
         }),
       });
 
@@ -40,6 +60,7 @@ export default function Contact() {
 
       setStatus("sent");
       form.reset();
+      setPurpose("");
     } catch (error) {
       setStatus("error");
       setErrorMessage(
@@ -91,7 +112,10 @@ export default function Contact() {
             <select
               required
               name="purpose"
-              defaultValue=""
+              value={purpose}
+              onChange={(e) =>
+                setPurpose(e.target.value as ContactPurpose | "")
+              }
               disabled={status === "submitting"}
               className="glass-input mt-2 w-full px-4 py-3 text-base outline-none disabled:opacity-60"
             >
@@ -105,6 +129,23 @@ export default function Contact() {
               ))}
             </select>
           </label>
+          {purpose === DATA_CONTRIBUTION_PURPOSE && (
+            <label className="block lg:col-span-2">
+              <span className="font-label text-accent">Data download link</span>
+              <p className="mt-1 text-sm text-muted">
+                Share a link where we can download your dataset (Google Drive,
+                Dropbox, GitHub, etc.).
+              </p>
+              <input
+                required
+                type="url"
+                name="dataDownloadLink"
+                disabled={status === "submitting"}
+                placeholder="https://"
+                className="glass-input mt-2 w-full px-4 py-3 text-base outline-none disabled:opacity-60"
+              />
+            </label>
+          )}
           <label className="block lg:col-span-2">
             <span className="font-label text-accent">Message</span>
             <textarea
