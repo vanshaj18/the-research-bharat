@@ -1,4 +1,5 @@
 import { contactPurposeLabel, type ContactPurpose } from "@/lib/contact";
+import { SITE_NAME } from "@/lib/site";
 
 export type ContactPayload = {
   name: string;
@@ -10,7 +11,7 @@ export type ContactPayload = {
 
 export function formatContactMessage(payload: ContactPayload): string {
   const lines = [
-    "*New ResearchIndia inquiry*",
+    `*New ${SITE_NAME} inquiry*`,
     "",
     `*Name:* ${payload.name}`,
     `*Email:* ${payload.email}`,

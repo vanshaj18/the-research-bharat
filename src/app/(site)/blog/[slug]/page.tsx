@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPost(slug);
   if (!post) return { title: "Brief not found" };
   return {
-    title: `${post.title} | ResearchIndia`,
+    title: `${post.title} | The Research Bharat`,
     description: post.excerpt,
     robots: { index: false, follow: false },
   };

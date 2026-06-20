@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
-import { BLOG_POSTS } from "@/lib/blog";
+import { BLOG_PUBLICATIONS } from "@/lib/publications";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Insights | ResearchIndia",
+  title: "Insights | The Research Bharat",
   description: "Research notes and data-driven commentary.",
   robots: { index: false, follow: false },
 };
@@ -24,7 +24,7 @@ export default function BlogPage() {
         </header>
 
         <ul className="w-full divide-y divide-border">
-          {BLOG_POSTS.map((post) => (
+          {BLOG_PUBLICATIONS.map((post) => (
             <li key={post.slug} className="py-10 first:pt-0">
               <article className="border-l-4 border-accent pl-6">
                 <time className="text-sm font-medium text-muted">

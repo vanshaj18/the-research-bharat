@@ -1,4 +1,5 @@
 import PageShell from "@/components/PageShell";
+import { SITE_NAME } from "@/lib/site";
 import {
   CONTACT_ROUTE,
   CONTRIBUTE_ROUTE,
@@ -55,7 +56,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="waterfall-hero">
-          <p className="waterfall-name font-display">Research India</p>
+          <p className="waterfall-name font-display">{SITE_NAME}</p>
         </div>
       </div>
 
@@ -80,7 +81,7 @@ export default function SiteFooter() {
             ))}
           </nav>
           <p className="mt-4 text-sm text-muted">
-            © {new Date().getFullYear()} ResearchIndia — Independent research.
+            © {new Date().getFullYear()} {SITE_NAME} — Independent research.
             Building India one data point at a time.
             <Link
               href="/blog"
@@ -90,6 +91,9 @@ export default function SiteFooter() {
               ·
             </Link>
           </p>
+          {/* <p className="mt-2 text-xs text-muted/80">
+            Built by the minds graduated from IITs
+          </p> */}
         </PageShell>
       </div>
     </footer>

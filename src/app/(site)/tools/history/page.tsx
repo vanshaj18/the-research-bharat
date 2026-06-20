@@ -3,7 +3,7 @@ import ToolPageHeader from "@/components/ToolPageHeader";
 import HistoryLearner from "@/components/tools/HistoryLearner";
 
 export const metadata: Metadata = {
-  title: "Policy History Lab | ResearchIndia",
+  title: "Policy History Lab | The Research Bharat",
   description: "Curated historical briefs for civic and policy literacy.",
 };
 

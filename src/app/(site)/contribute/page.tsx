@@ -5,9 +5,9 @@ import { CONTRIBUTION_PATHS, REPO_URL } from "@/lib/contribute";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Contribute | ResearchIndia",
+  title: "Contribute | The Research Bharat",
   description:
-    "Contribute code, research topics, co-authored publications, or datasets to ResearchIndia.",
+    "Contribute code, research topics, co-authored publications, or datasets to The Research Bharat.",
 };
 
 export default function ContributePage() {
@@ -33,7 +33,7 @@ export default function ContributePage() {
             className="mt-4 max-w-[min(100%,52rem)] text-lg leading-relaxed text-muted"
             data-scroll-header-item
           >
-            ResearchIndia is independent and open. Whether you write code, propose
+            The Research Bharat is independent and open. Whether you write code, propose
             topics, co-author analysis, or share data—we want verifiable,
             district-scale work that citizens can inspect and extend.
           </p>

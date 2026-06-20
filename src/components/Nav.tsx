@@ -1,6 +1,7 @@
 "use client";
 
 import PageShell from "@/components/PageShell";
+import { SITE_NAME } from "@/lib/site";
 import {
   CONTACT_ROUTE,
   CONTRIBUTE_ROUTE,
@@ -101,7 +102,7 @@ export default function Nav() {
           href={onHome ? "#top" : "/"}
           className="font-display shrink-0 text-[1.35rem] leading-none tracking-tight text-foreground md:text-[1.5rem]"
         >
-          ResearchIndia
+          {SITE_NAME}
         </Link>
 
         {/* <NavLabStatus className="order-3 hidden w-full justify-center md:order-none md:flex md:w-auto lg:mx-4" /> */}

@@ -8,7 +8,7 @@ export const CONTRIBUTION_PATHS = [
     id: "codebase",
     title: "Codebase",
     summary:
-      "ResearchIndia is open source. Contribute fixes, features, data pipelines, tool logic, or documentation.",
+      "The Research Bharat is open source. Contribute fixes, features, data pipelines, tool logic, or documentation.",
     steps: [
       "Browse the repository and open issues for bugs or small improvements.",
       "Fork the repo, branch from main, and keep pull requests focused.",

@@ -3,7 +3,7 @@ import ToolPageHeader from "@/components/ToolPageHeader";
 import CrimeRates from "@/components/tools/CrimeRates";
 
 export const metadata: Metadata = {
-  title: "Public Safety Data | ResearchIndia",
+  title: "Public Safety Data | The Research Bharat",
   description: "Crime trend lookup for transparency research.",
 };
 

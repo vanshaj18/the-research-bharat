@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LookForPublic from "@/components/sections/LookForPublic";
 
 export const metadata: Metadata = {
-  title: "LookPublic | ResearchIndia",
+  title: "LookPublic | The Research Bharat",
   description:
     "District-level government data for India—open civic intelligence via ForThePeople.in.",
 };

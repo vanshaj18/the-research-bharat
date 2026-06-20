@@ -3,7 +3,7 @@ import ToolPageHeader from "@/components/ToolPageHeader";
 import TaxCalculator from "@/components/tools/TaxCalculator";
 
 export const metadata: Metadata = {
-  title: "Tax Policy Estimator | ResearchIndia",
+  title: "Tax Policy Estimator | The Research Bharat",
   description: "Simplified federal tax estimate for policy analysis.",
 };
 

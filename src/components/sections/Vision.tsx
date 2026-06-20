@@ -68,7 +68,7 @@ export default function Vision() {
         <p className="lab-meta text-accent">Archive · peer network</p>
         <p className="font-label mt-2 text-accent">Research ecosystem</p>
         <p className="mt-3 max-w-[min(100%,100rem)] leading-relaxed text-muted">
-          ResearchIndia is an independent think tank dedicated to uncovering the realities shaping India through data, systems analysis, and public research. 
+          The Research Bharat is an independent think tank dedicated to uncovering the realities shaping India through data, systems analysis, and public research. 
           We believe that meaningful national progress begins with clarity — understanding how our infrastructure, economy, environment, institutions, and civic systems truly function beyond headlines and political narratives.
           
           Our aim is clear; we want to bring forth the discussion about national growth grounded in data, rigorously analyse initiative, policies and related details that 

@@ -1,4 +1,4 @@
-# ResearchIndia
+# The Research Bharat
 
 **Building a new India, one data point at a time.**
 
@@ -6,7 +6,7 @@
 
 ## Refined Foundational Philosophy
 
-ResearchIndia is an independent think tank dedicated to uncovering the realities shaping India through data, systems analysis, and public research.
+The Research Bharat is an independent think tank dedicated to uncovering the realities shaping India through data, systems analysis, and public research.
 
 We believe that meaningful national progress begins with clarity — understanding how our infrastructure, economy, environment, institutions, and civic systems truly function beyond headlines and political narratives.
 
@@ -16,7 +16,7 @@ We aim to contribute to the rebuilding of India’s intellectual and civilizatio
 
 India once stood for deep inquiry, scientific curiosity, philosophical depth, and long-term societal vision. We believe those foundations still matter.
 
-Through open research, public data tools, district-level transparency, and evidence-driven analysis, ResearchIndia works toward a future where development is intelligent, accountable, sustainable, and rooted in responsibility to both people and nature.
+Through open research, public data tools, district-level transparency, and evidence-driven analysis, The Research Bharat works toward a future where development is intelligent, accountable, sustainable, and rooted in responsibility to both people and nature.
 
 We do not believe growth must come through destruction.  
 We believe progress and preservation can coexist.
@@ -29,7 +29,7 @@ Our work is built on one principle:
 
 ## Aims
 
-ResearchIndia pursues a long-horizon vision: a **data-literate India from 2026 to 2050** — research growth, civic clarity, and national advancement.
+The Research Bharat pursues a long-horizon vision: a **data-literate India from 2026 to 2050** — research growth, civic clarity, and national advancement.
 
 ### What we work toward
 
@@ -91,7 +91,7 @@ Tools are accessible from the site navigation under **Tools**, and from the **In
 
 ## Pages
 
-The ResearchIndia site brings philosophy, research, and instruments together in one place.
+The Research Bharat site brings philosophy, research, and instruments together in one place.
 
 | Page | Path | What you’ll find |
 |------|------|------------------|
@@ -125,7 +125,7 @@ On the landing page, anchored sections include:
 
 ---
 
-*ResearchIndia · Independent think tank · Open research for a data-literate India*
+*The Research Bharat · Independent think tank · Open research for a data-literate India*
 
 ---
 

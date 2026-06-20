@@ -3,7 +3,7 @@ import ToolPageHeader from "@/components/ToolPageHeader";
 import GHICalculator from "@/components/tools/GHICalculator";
 
 export const metadata: Metadata = {
-  title: "Household Income Index | ResearchIndia",
+  title: "Household Income Index | The Research Bharat",
   description:
     "Gross household income vs. federal poverty level—research instrument for fiscal analysis.",
 };

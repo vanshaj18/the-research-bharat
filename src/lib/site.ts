@@ -17,4 +17,9 @@ export function getSiteUrl(): URL | undefined {
   }
 }
 
-export const SITE_NAME = "ResearchIndia";
+export const SITE_NAME = "The Research Bharat";
+
+export function siteTitle(page?: string): string {
+  if (page) return `${page} | ${SITE_NAME}`;
+  return `${SITE_NAME} | Data-Driven Policy Insights for India`;
+}
