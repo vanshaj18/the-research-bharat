@@ -2,6 +2,7 @@ import { getSiteUrl, SITE_NAME, siteTitle } from "@/lib/site";
 import type { Metadata } from "next";
 import { Cinzel, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -55,7 +56,10 @@ export default function RootLayout({
       lang="en"
       className={`${cinzel.variable} ${inter.variable} ${jetbrainsMono.variable} h-full`}
     >
-      <body className="min-h-full w-full antialiased">{children}</body>
+      <body className="min-h-full w-full antialiased">
+          {children}
+          <Analytics/>
+      </body>
     </html>
   );
 }
