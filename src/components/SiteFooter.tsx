@@ -1,6 +1,7 @@
 import PageShell from "@/components/PageShell";
 import { SITE_NAME } from "@/lib/site";
 import {
+  BLOG_ROUTE,
   CONTACT_ROUTE,
   CONTRIBUTE_ROUTE,
   LOOKPUBLIC_ROUTE,
@@ -39,6 +40,7 @@ function WaterfallColumn({ offset }: { offset: number }) {
 
 const FOOTER_LINKS = [
   { label: "Publications", href: PUBLICATIONS_ROUTE },
+  { label: "Blog", href: BLOG_ROUTE },
   { label: "LookPublic", href: LOOKPUBLIC_ROUTE },
   { label: "Contribute", href: CONTRIBUTE_ROUTE },
   { label: "Contact", href: CONTACT_ROUTE },
@@ -83,13 +85,6 @@ export default function SiteFooter() {
           <p className="mt-4 text-sm text-muted">
             © {new Date().getFullYear()} {SITE_NAME} — Independent research.
             Building India one data point at a time.
-            <Link
-              href="/blog"
-              className="ml-1 text-[10px] opacity-20 transition-opacity hover:opacity-50"
-              aria-label="Insights"
-            >
-              ·
-            </Link>
           </p>
           {/* <p className="mt-2 text-xs text-muted/80">
             Built by the minds graduated from IITs

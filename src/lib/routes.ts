@@ -1,4 +1,5 @@
 export const PUBLICATIONS_ROUTE = "/publications";
+export const BLOG_ROUTE = "/blog";
 export const LOOKPUBLIC_ROUTE = "/lookpublic";
 export const CONTACT_ROUTE = "/contact";
 export const CONTRIBUTE_ROUTE = "/contribute";
