@@ -71,6 +71,12 @@ export default function Contact() {
     }
   }
 
+  function handleSubmitAnother() {
+    setStatus("idle");
+    setErrorMessage("");
+    setPurpose("");
+  }
+
   return (
     <Section
       id="contact"
@@ -80,9 +86,18 @@ export default function Contact() {
     >
       <div className="glass-card lab-card max-w-3xl p-[clamp(1.25rem,3vw,2rem)]">
       {status === "sent" ? (
-        <p className="font-display text-2xl text-foreground md:text-3xl">
-          Thank you. Your inquiry has been received. We will respond shortly.
-        </p>
+        <div>
+          <p className="font-display text-2xl text-foreground md:text-3xl">
+            Thank you. Your inquiry has been received. We will respond shortly.
+          </p>
+          <button
+            type="button"
+            onClick={handleSubmitAnother}
+            className="lab-btn lab-btn-secondary mt-6"
+          >
+            Submit another query
+          </button>
+        </div>
       ) : (
         <form
           onSubmit={handleSubmit}
