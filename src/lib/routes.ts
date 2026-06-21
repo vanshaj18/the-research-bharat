@@ -12,7 +12,7 @@ export const TOOL_ROUTES = {
 
 export const TOOL_LINKS = [
   { label: "Household Income Index", href: TOOL_ROUTES.ghi },
-  { label: "Tax Policy Estimator", href: TOOL_ROUTES.tax },
+  { label: "Indian Salary Tax Estimator", href: TOOL_ROUTES.tax },
   { label: "Public Safety Data", href: TOOL_ROUTES.crime },
   { label: "Policy History Lab", href: TOOL_ROUTES.history },
 ] as const;
