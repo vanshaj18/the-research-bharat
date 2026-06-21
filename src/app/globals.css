@@ -171,7 +171,7 @@ body {
 }
 
 .glass-nav {
-  background: rgb(8 8 9 / 0.88);
+  background: rgb(8, 8, 9);
   border-block-end-color: var(--glass-border);
   box-shadow: var(--glass-inset), 0 4px 24px rgb(0 0 0 / 0.45);
 }
@@ -196,11 +196,11 @@ body {
   -webkit-backdrop-filter: none;
 }
 .nav-transparent.scrolled {
-  background: var(--metallic-base);
+  background: rgb(10 10 11 / 0.72);
   border-bottom: 1px solid var(--glass-border);
   box-shadow: var(--glass-inset), var(--glass-shadow);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(40px) saturate(1.15);
+  -webkit-backdrop-filter: blur(40px) saturate(1.15);
 }
 
 .glass-input {
@@ -711,6 +711,47 @@ body {
   border: 2px solid var(--background);
 }
 
+.vision-timeline-dot--current {
+  width: 1rem;
+  height: 1rem;
+  animation: vision-timeline-dot-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes vision-timeline-dot-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 18px var(--milestone-accent, var(--accent)),
+      0 0 36px color-mix(in srgb, var(--milestone-accent, var(--accent)) 55%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 24px var(--milestone-accent, var(--accent)),
+      0 0 48px color-mix(in srgb, var(--milestone-accent, var(--accent)) 70%, transparent),
+      0 0 0 6px color-mix(in srgb, var(--milestone-accent, var(--accent)) 18%, transparent);
+  }
+}
+
+.vision-timeline-now-badge {
+  margin-left: auto;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgb(75 143 255 / 0.16);
+  border: 1px solid rgb(75 143 255 / 0.45);
+  box-shadow: 0 0 16px rgb(75 143 255 / 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vision-timeline-dot--current {
+    animation: none;
+  }
+}
+
 .vision-timeline-signal {
   background: linear-gradient(
     90deg,
@@ -726,6 +767,15 @@ body {
     border-color 0.25s ease,
     box-shadow 0.25s ease,
     transform 0.25s ease;
+}
+
+.vision-timeline-card--current {
+  border-color: rgb(75 143 255 / 0.55);
+  box-shadow:
+    var(--glass-inset),
+    0 0 28px rgb(75 143 255 / 0.22),
+    0 0 56px rgb(75 143 255 / 0.1),
+    0 8px 32px rgb(0 0 0 / 0.5);
 }
 
 .vision-timeline-card:hover {

@@ -1,5 +1,6 @@
 import VisionMilestoneCard from "@/components/vision/VisionMilestoneCard";
 import {
+  getCurrentMilestoneIndex,
   milestoneProgress,
   VISION_MILESTONE_COLORS,
   VISION_MILESTONES,
@@ -7,6 +8,7 @@ import {
 
 export default function VisionTimeline() {
   const count = VISION_MILESTONES.length;
+  const currentIndex = getCurrentMilestoneIndex(VISION_MILESTONES);
 
   return (
     <div className="mb-[clamp(2.75rem,6vw,4.5rem)]" data-scroll-timeline>
@@ -34,19 +36,27 @@ export default function VisionTimeline() {
         {/* Desktop: horizontal track + column markers above cards */}
         <div className="vision-timeline-rail hidden md:block">
           <div className="vision-timeline-track" aria-hidden />
-          <ol className="vision-timeline-markers relative z-[1] grid grid-cols-6 gap-3">
-            {VISION_MILESTONES.map((milestone, index) => (
-              <li key={milestone.year} className="flex justify-center">
-                <span
-                  className="vision-timeline-dot"
-                  style={{
-                    backgroundColor: VISION_MILESTONE_COLORS[index],
-                    boxShadow: `0 0 14px ${VISION_MILESTONE_COLORS[index]}99`,
-                  }}
-                  aria-hidden
-                />
-              </li>
-            ))}
+          <ol className="vision-timeline-markers relative z-[1] grid grid-cols-5 gap-3">
+            {VISION_MILESTONES.map((milestone, index) => {
+              const isCurrent = index === currentIndex;
+              const accentColor = VISION_MILESTONE_COLORS[index];
+
+              return (
+                <li key={milestone.year} className="flex justify-center">
+                  <span
+                    className={`vision-timeline-dot${isCurrent ? " vision-timeline-dot--current" : ""}`}
+                    style={{
+                      backgroundColor: accentColor,
+                      "--milestone-accent": accentColor,
+                      boxShadow: isCurrent
+                        ? undefined
+                        : `0 0 14px ${accentColor}99`,
+                    } as React.CSSProperties}
+                    aria-hidden
+                  />
+                </li>
+              );
+            })}
           </ol>
         </div>
 
@@ -60,6 +70,7 @@ export default function VisionTimeline() {
                   milestone={milestone}
                   accentColor={VISION_MILESTONE_COLORS[index]}
                   progress={milestoneProgress(index, count)}
+                  isCurrent={index === currentIndex}
                 />
               </li>
             ))}
@@ -67,7 +78,7 @@ export default function VisionTimeline() {
         </div>
 
         {/* Desktop: cards in a row below the track */}
-        <ol className="vision-timeline-grid relative z-[1] mt-6 hidden gap-3 md:grid md:grid-cols-6" data-scroll-group>
+        <ol className="vision-timeline-grid relative z-[1] mt-6 hidden gap-3 md:grid md:grid-cols-5" data-scroll-group>
           {VISION_MILESTONES.map((milestone, index) => (
             <li key={milestone.year} className="vision-timeline-block" data-scroll-item>
               <VisionMilestoneCard
@@ -75,6 +86,7 @@ export default function VisionTimeline() {
                 accentColor={VISION_MILESTONE_COLORS[index]}
                 progress={milestoneProgress(index, count)}
                 showDot={false}
+                isCurrent={index === currentIndex}
               />
             </li>
           ))}
