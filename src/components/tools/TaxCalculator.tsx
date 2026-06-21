@@ -6,24 +6,68 @@ import {
   formatInr,
   type SalaryTaxResult,
 } from "@/lib/indianSalaryTax";
-import { FormEvent, useState } from "react";
+import { type ChangeEvent, FormEvent, useRef, useState } from "react";
+
+type InputMode = "manual" | "upload";
 
 function parseAmount(value: string): number {
   const parsed = parseFloat(value);
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+function applyUploadPayload(
+  data: Record<string, unknown>,
+  setters: {
+    setCtc: (v: string) => void;
+    setAnnualRentPaid: (v: string) => void;
+    setMetroCity: (v: boolean) => void;
+    setAnnualFoodBenefit: (v: string) => void;
+    setSection80c: (v: string) => void;
+    setSection80d: (v: string) => void;
+    setEmployeePf: (v: string) => void;
+    setEmployerPf: (v: string) => void;
+    setEmployeeNps: (v: string) => void;
+    setEmployerNps: (v: string) => void;
+  },
+) {
+  const numberField = (key: string, setter: (v: string) => void) => {
+    const value = data[key];
+    if (typeof value === "number" && Number.isFinite(value)) {
+      setter(String(value));
+    }
+  };
+
+  numberField("ctc", setters.setCtc);
+  numberField("annualRentPaid", setters.setAnnualRentPaid);
+  numberField("annualFoodBenefit", setters.setAnnualFoodBenefit);
+  numberField("section80c", setters.setSection80c);
+  numberField("section80d", setters.setSection80d);
+  numberField("employeePf", setters.setEmployeePf);
+  numberField("employerPf", setters.setEmployerPf);
+  numberField("employeeNps", setters.setEmployeeNps);
+  numberField("employerNps", setters.setEmployerNps);
+
+  if (typeof data.metroCity === "boolean") {
+    setters.setMetroCity(data.metroCity);
+  }
+}
+
 export default function TaxCalculator() {
+  const [inputMode, setInputMode] = useState<InputMode>("manual");
   const [ctc, setCtc] = useState("");
   const [annualRentPaid, setAnnualRentPaid] = useState("");
   const [metroCity, setMetroCity] = useState(false);
   const [annualFoodBenefit, setAnnualFoodBenefit] = useState("");
   const [section80c, setSection80c] = useState("");
   const [section80d, setSection80d] = useState("");
+  const [employeePf, setEmployeePf] = useState("");
+  const [employerPf, setEmployerPf] = useState("");
   const [employeeNps, setEmployeeNps] = useState("");
   const [employerNps, setEmployerNps] = useState("");
   const [error, setError] = useState("");
+  const [uploadMessage, setUploadMessage] = useState("");
   const [result, setResult] = useState<SalaryTaxResult | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -36,6 +80,7 @@ export default function TaxCalculator() {
     }
 
     setError("");
+    setUploadMessage("");
     setResult(
       calculateSalary({
         ctc: parsedCtc,
@@ -44,10 +89,50 @@ export default function TaxCalculator() {
         annualFoodBenefit: parseAmount(annualFoodBenefit),
         section80c: parseAmount(section80c),
         section80d: parseAmount(section80d),
+        employeePf: parseAmount(employeePf),
+        employerPf: parseAmount(employerPf),
         employeeNps: parseAmount(employeeNps),
         employerNps: parseAmount(employerNps),
       }),
     );
+  }
+
+  async function handleFileUpload(file: File) {
+    setError("");
+    setUploadMessage("");
+    setResult(null);
+
+    if (file.type === "application/json" || file.name.endsWith(".json")) {
+      try {
+        const text = await file.text();
+        const data = JSON.parse(text) as Record<string, unknown>;
+        applyUploadPayload(data, {
+          setCtc,
+          setAnnualRentPaid,
+          setMetroCity,
+          setAnnualFoodBenefit,
+          setSection80c,
+          setSection80d,
+          setEmployeePf,
+          setEmployerPf,
+          setEmployeeNps,
+          setEmployerNps,
+        });
+        setInputMode("manual");
+        setUploadMessage("Salary data loaded. Review the fields below, then compare regimes.");
+      } catch {
+        setError("Could not parse JSON file. Check the format and try again.");
+      }
+      return;
+    }
+
+    setError("Payslip and PDF upload is coming soon. Use a JSON file or switch to Manual entry.");
+  }
+
+  function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) void handleFileUpload(file);
+    e.target.value = "";
   }
 
   return (
@@ -58,10 +143,76 @@ export default function TaxCalculator() {
       >
         <p className="text-sm leading-relaxed text-muted">
           Compare old vs new income tax regimes for salaried employees in India.
-          Includes HRA exemption, food benefit, Section 80C/80D, NPS, standard
-          deduction, and 4% cess on tax.
+          Includes HRA exemption, food benefit, PF, Section 80C/80D, NPS,
+          standard deduction, and 4% cess on tax.
         </p>
 
+        <div
+          className="grid grid-cols-2 gap-2"
+          role="group"
+          aria-label="Salary input mode"
+        >
+          {(["manual", "upload"] as const).map((mode) => {
+            const isActive = inputMode === mode;
+            return (
+              <button
+                key={mode}
+                type="button"
+                onClick={() => {
+                  setInputMode(mode);
+                  setError("");
+                  setUploadMessage("");
+                }}
+                aria-pressed={isActive}
+                className={`lab-btn normal-case tracking-normal ${
+                  isActive
+                    ? "lab-btn-active"
+                    : "lab-btn-secondary text-foreground/75"
+                }`}
+              >
+                {mode === "manual" ? "Manual" : "Upload"}
+              </button>
+            );
+          })}
+        </div>
+
+        {inputMode === "upload" ? (
+          <div className="space-y-4 rounded-lg border border-dashed border-border/80 bg-black/20 p-6">
+            <p className="text-sm leading-relaxed text-muted">
+              Upload a JSON salary breakdown to pre-fill the form. Payslip and PDF
+              parsing is coming soon.
+            </p>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".json,application/json"
+              onChange={handleFileChange}
+              className="sr-only"
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="lab-btn lab-btn-secondary w-full"
+            >
+              Choose file
+            </button>
+            <pre className="overflow-x-auto rounded-md border border-border/60 bg-black/30 p-3 text-xs leading-relaxed text-muted">
+{`{
+  "ctc": 1800000,
+  "annualRentPaid": 360000,
+  "metroCity": true,
+  "annualFoodBenefit": 26400,
+  "employeePf": 86400,
+  "employerPf": 86400,
+  "section80c": 150000,
+  "section80d": 25000,
+  "employeeNps": 50000,
+  "employerNps": 108000
+}`}
+            </pre>
+          </div>
+        ) : (
+          <>
         <label className="block">
           <span className="font-label text-accent">Annual CTC (₹)</span>
           <input
@@ -146,6 +297,38 @@ export default function TaxCalculator() {
 
         <div className="grid gap-6 sm:grid-cols-2">
           <label className="block">
+            <span className="font-label text-accent">Employee PF (₹)</span>
+            <input
+              type="number"
+              min={0}
+              value={employeePf}
+              onChange={(e) => setEmployeePf(e.target.value)}
+              className="glass-input mt-2 w-full px-4 py-3 text-base outline-none"
+              placeholder="86400"
+            />
+            <span className="mt-1 block text-xs text-muted">
+              Annual employee provident fund contribution.
+            </span>
+          </label>
+
+          <label className="block">
+            <span className="font-label text-accent">Employer PF (₹)</span>
+            <input
+              type="number"
+              min={0}
+              value={employerPf}
+              onChange={(e) => setEmployerPf(e.target.value)}
+              className="glass-input mt-2 w-full px-4 py-3 text-base outline-none"
+              placeholder="86400"
+            />
+            <span className="mt-1 block text-xs text-muted">
+              Annual employer provident fund contribution.
+            </span>
+          </label>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          <label className="block">
             <span className="font-label text-accent">Employee NPS (₹)</span>
             <input
               type="number"
@@ -169,6 +352,12 @@ export default function TaxCalculator() {
             />
           </label>
         </div>
+          </>
+        )}
+
+        {uploadMessage && (
+          <p className="text-sm font-medium text-accent">{uploadMessage}</p>
+        )}
 
         {error && (
           <p role="alert" className="text-sm font-medium text-red-300">
@@ -176,7 +365,11 @@ export default function TaxCalculator() {
           </p>
         )}
 
-        <button type="submit" className="lab-btn lab-btn-primary w-full">
+        <button
+          type="submit"
+          className="lab-btn lab-btn-primary w-full"
+          disabled={inputMode === "upload"}
+        >
           Compare regimes
         </button>
 
