@@ -1,6 +1,6 @@
 import { CONTACT_ROUTE } from "@/lib/routes";
 
-export const REPO_URL = "https://github.com/vanshaj18/researchIndia";
+export const REPO_URL = "https://github.com/vanshaj18/the-research-bharat";
 export const FORTHEPEOPLE_URL = "https://forthepeople.in/en";
 
 export const CONTRIBUTION_PATHS = [
