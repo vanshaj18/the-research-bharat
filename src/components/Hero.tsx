@@ -11,15 +11,23 @@ export default function Hero() {
     >
       <div className="pointer-events-none absolute inset-0" data-scroll-hero-bg>
         <Image
+          src="/hero_image_mobile.png"
+          alt="India landscape with temples and river, featuring The Research Bharat think tank branding"
+          fill
+          priority
+          className="object-cover object-center min-[1301px]:hidden"
+          sizes="(max-width: 1300px) 100vw, 0px"
+        />
+        <Image
           src="/hero_image.png"
           alt="India landscape with temples and river, overlaid with research data visualization"
           fill
           priority
-          className="object-cover object-[center_35%]"
-          sizes="100vw"
+          className="hidden object-cover object-[center_35%] min-[1301px]:block"
+          sizes="(min-width: 1301px) 100vw, 0px"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/90 via-[#0a0a0b]/25 to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/90 via-[#0a0a0b]/25 to-transparent min-[1301px]:via-[#0a0a0b]/25 max-[1300px]:via-[#0a0a0b]/10"
           aria-hidden
         />
       </div>
